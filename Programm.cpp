@@ -55,7 +55,8 @@ public:
 				return false; // Found a different character, vial is not complete
 			}
 		}
-		return true; // All characters are the same, vial is complete
+		
+		return filled == 4 || filled == 0; // All characters are the same, vial is complete
 	}
 	void setLabel(int label) {
 		this->label = label;
@@ -111,6 +112,7 @@ public:
 		return label;
 	}
 };
+
 void displayVials(Vial* vials, int numOfVials) {
 	for (int i = 0; i < numOfVials; i++) {
 		vials[i].display();
@@ -141,7 +143,7 @@ int main() {
 		for (char item : contents) {
 			int vialIndex;
 			do {
-				vialIndex = std::rand() % 4;
+				vialIndex = rand() % 4;
 			} while (vials[vialIndex].getFilled() > i);
 			vials[vialIndex].add(item);
 		}
